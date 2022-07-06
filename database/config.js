@@ -3,7 +3,7 @@ const mongoose = require('mongoose');//Es para facilitar el manejo de la BBDD
 const dbConnection = async() => {
     try {
         //revisar documentación de mongoose
-        await mongoose.connect(process.env.MONGODB__CNN, {
+        await mongoose.connect(process.env.MONGODB_CNN, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
