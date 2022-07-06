@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const { dbConnection } = require('../database/config');
 
 //Implementamos un server de express con una clase. Una forma diferente a su implementación tradicional.
 class Server {
@@ -8,12 +9,19 @@ class Server {
         this.app = express();
         this.port = process.env.PORT;
         this.usuariosPath = '/api/usuarios';
+        
+        //dbConnection
+        this.ConnectionDB();
 
         //Middlewares
         this.middlewares();
 
         //Methods
         this.routes();
+    }
+
+    async ConnectionDB() {
+        await dbConnection();
     }
 
     middlewares() {
