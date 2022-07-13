@@ -9,6 +9,7 @@ class Server {
         this.app = express();
         this.port = process.env.PORT;
         this.usuariosPath = '/api/usuarios';
+        this.authPath = '/api/auth';
         
         //dbConnection
         this.ConnectionDB();
@@ -37,6 +38,7 @@ class Server {
 
     routes() {
         //middleware que solo se ejecta en la ruta especificada y carga un recurso, en este caso las rutas.
+        this.app.use(this.authPath, require('../routers/auth'));
         this.app.use(this.usuariosPath, require('../routers/usuarios'));
 
     }

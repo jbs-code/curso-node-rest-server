@@ -43,7 +43,8 @@ const UsuarioSchema = Schema({
 
 //Debemos declarar una función tradicional porque emplearemos el objeto this y de esta manera mantemeos la intancia.
 UsuarioSchema.methods.toJSON = function() {
-    const {__v, password, ...usuario} = this.toObject();
+    const {__v, password, _id, ...usuario} = this.toObject();
+    usuario.uid = _id;//Renombramos el _id en uid
     return usuario;
 }
 module.exports = model('Usuario', UsuarioSchema);
